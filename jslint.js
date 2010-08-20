@@ -1,3 +1,12 @@
+// (C) Daniel Lopretto (http://daniellopretto.com) 
+// License: WTFPL, http://sam.zoy.org/wtfpl/ 
+//
+// This program is free software. It comes without any warranty, to the
+// extent permitted by applicable law. You can redistribute it and/or
+// modify it under the terms of the Do What The Fuck You Want To Public
+// License, Version 2, as published by Sam Hocevar. See
+// http://sam.zoy.org/wtfpl/COPYING for more details.
+
 /*jslint white: true, browser: true, devel: true, onevar: true, undef: true, 
     nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, 
     newcap: true, immed: true, strict: true,
@@ -14,6 +23,9 @@
 (function () {
     var lint, run_lint;
 
+    // Including the minified version of jslint from jslint.com, you can
+    // find preformance boost by downloading jslint.js and including
+    // your local copy instead.
     lint = document.createElement('script');
     lint.setAttribute('src', 'http://www.jslint.com/webjslint.js');
     document.body.appendChild(lint);
@@ -50,6 +62,10 @@
             }
         }
         else {
+            // This is more clever then good!  Don't use a wildly
+            // looping call to setTimeout() in your production code.
+            // The consequences of something bad happening here are
+            // minimal so we do it.
             setTimeout(run_lint());
         }
     }());
